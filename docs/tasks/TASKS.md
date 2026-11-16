@@ -1,14 +1,14 @@
 # Tasks
 
 > Task IDs are permanent (T-001, T-002 …). Each task has a "Done when" check.
-> Filled in during planning on 2026-11-16. Newly discovered work is added at the bottom of To do.
+> Filled in during planning on 2026-11-16. Open questions 1 to 12 were answered by the owner on 2026-11-16. Newly discovered work is added at the bottom of To do.
 > The design is in `docs/architecture.md`; the reasons are in `docs/decisions/`.
 
 ## How every task runs
 
 - **One task at a time.** A short plan for the task is posted, the owner approves, then it is built (CLAUDE.md rule 1). Each task starts by reading current docs for the libraries it touches, because several are newer than the planning notes.
 - **Finishing a task** means `pnpm lint`, `pnpm typecheck` and `pnpm build` pass, the page is checked in the browser at 375 px and 1440 px, this file is updated, and there is one commit `T-0NN: description`. Phase A has no build; its check is opening the study or document.
-- **3D and animation tasks add:** steady 60 fps on desktop (measured), no layout shift, the reduced-motion path works, the `optimize-web-animations` checks (nothing runs off screen or in a hidden tab), and a check on a real phone (over Wi-Fi at `http://<mac-ip>:3000`, or the Vercel URL).
+- **3D and animation tasks add:** steady 60 fps on desktop (measured), no layout shift, the reduced-motion path works, the `optimize-web-animations` checks (nothing runs off screen or in a hidden tab), and a check on the owner's iPhone (iOS Safari, over Wi-Fi at `http://<mac-ip>:3000`, or the Vercel URL). "The phone" in this file means that iPhone. There is no Android device (answer 8): Android is covered by browser emulation only, and every Android row in a matrix or audit reads "emulation only, not tested on real hardware", never "pass".
 - **Size.** Each task targets under 300 changed lines, not counting vendored libraries, lockfiles, generated types or images. Variants B and C start as copies of A, so their review unit is the diff against A.
 - **Decisions.** Records 0001 to 0003 are Accepted. Records 0004 to 0020 are Proposed. A task with a "Confirms" line re-checks that record against current docs and sets it to Accepted. A Proposed record may be revised until then; once Accepted, a change needs a new record that supersedes it.
 - **Scope.** Work discovered along the way becomes a new task at the bottom of To do.
@@ -19,7 +19,7 @@
 
 | Phase | Tasks | What exists at the end |
 |---|---|---|
-| Before A | T-001 | Spec and CLAUDE.md match decisions 0001 to 0003 |
+| Before A | T-001 | Spec, CLAUDE.md, content notes and architecture match decisions 0001 to 0003 and the recorded answers |
 | A Design study | T-002 to T-013 | Three studies, a chosen direction, an asset brief, a full-path master study |
 | B Scaffold | T-014 to T-019 | Empty typed app deployed on Vercel |
 | C CMS | T-020 to T-032 | Studio at `/studio`, content imported, typed queries, edits live in under 60 s |
@@ -28,25 +28,57 @@
 | F Integrations | T-076 to T-081 | Visit counter, stats, analytics, working contact form |
 | G Quality | T-082 to T-091 | SEO, 404 page, audits passed |
 | H Launch | T-092 to T-095 | Domain live, Search Console, runbook, acceptance checklist |
+| Added after planning | T-096 | Approved commit titles and Writing final-card wording, ahead of the import |
 
 Skills by phase: `scroll-world-storytelling`, `threejs`, `cinematic-scroll-storytelling` (A, E); `editorial-portfolio-chapters` (D); `scroll-progress-timeline` (T-069 to T-072); `pointer-trail-emitter` (T-007, T-066); `ambient-section-particles` (T-059); `optimize-web-animations` (every E task, T-075); `audit-reference-originality` (T-002, T-091).
 
-## Open questions
+## Questions
 
-None of these has been guessed. Each names the first task it blocks.
+Questions 1 to 12 were answered by the owner on 2026-11-16. Each keeps its number and the task it blocked. Question 13 came out of answer 2 and is open. The "Effect" line names the tasks that changed because of the answer.
 
-1. **Footer visits number.** The spec says "unique daily visitors (once per visitor per day, bots skipped)"; `content.md` says "total site visits". Should the footer show a running total where each visitor adds at most one a day, today's unique visitors, or both, and under what label? Blocks T-077.
-2. **Hashnode.** What is the publication URL? Are there at least four posts today? May post cards also point to LinkedIn write-ups, given the last card says "Read everything on Hashnode"? Blocks T-043.
-3. **Commit-style titles** for the five roles are not in `content.md`. Will the owner write them, or should drafts be prepared for approval? Blocks T-039.
-4. **The two `[CHECK]` items.** May the EY work name the Microsoft engagement and KubeMentor? Until confirmed, the importer holds both highlights back, which leaves EY with one highlight. Blocks T-031.
-5. **Section headings.** `content.md` gives headings only for Hero and Contact. May the others be seeded from the spec's section names (Technical skills, About, Experience, Projects, Writing, Certifications & training, Where I'm heading)? Blocks T-031.
-6. **The 15 `[FILL]` values:** Hashnode URL and host; Marslab stack; Linux Foundation language; repo links for four projects and a demo link for Discord Clone; three project covers; the AZ-900 date; two credential links. Needed before T-095.
-7. **Domain and sender.** Is there a domain, and which? If not, does the site launch on the `vercel.app` address? Which email is the Resend account under? Blocks T-080 and T-092.
-8. **Test phone.** Which phone or phones will be used for testing? That defines "mid-range" for the 30 fps fallback and the LCP target. First needed at T-010.
-9. **Additions beyond the spec:** T-019 (tests and CI), the `/resume` redirect (T-034), `pnpm env:check` (T-016) and `pnpm content:check` (T-090). Keep or strike?
-10. **Loader.** On every full page load, or once per browser session? Blocks T-065.
-11. **Copyright line.** Fixed text from Sanity ("© 2026 Subhranil Raha"), or the current year computed with the name? Blocks T-048.
-12. **Is the GitHub repo public?** It decides the "This portfolio" link. Blocks T-031.
+### Answered
+
+1. **Footer visits number. Answered.** The spec says "unique daily visitors (once per visitor per day, bots skipped)"; `content.md` says "total site visits". Should the footer show a running total where each visitor adds at most one a day, today's unique visitors, or both, and under what label?
+   - Answer: a running total where each visitor adds at most one a day, bots skipped, labelled "visits". This is the design already in decision 0018.
+   - Effect: T-001, T-048, T-076, T-077, T-078. Was blocking T-077; now clear.
+2. **Hashnode. Answered.** What is the publication URL? Are there at least four posts today? May post cards also point to LinkedIn write-ups, given the last card says "Read everything on Hashnode"?
+   - Answer: 1 to 3 posts today, so Writing shows the cards that exist plus the final card, and one, two or three posts must all render cleanly. Post cards may link to Hashnode or to LinkedIn write-ups, so each post has a source (Hashnode or LinkedIn), shown as a small label on its card, and the final card's wording covers both. The Hashnode publication URL is still `[FILL]`; the owner adds it in Studio.
+   - Effect: T-001 (spec wording, and decision 0021, which supersedes 0001 for the post model), T-023, T-025, T-043, T-073, T-094, T-096. Raised question 13. Was blocking T-043; now clear.
+3. **Commit-style titles** for the five roles are not in `content.md`. Will the owner write them, or should drafts be prepared for approval? **Answered.**
+   - Answer: draft them from the resume bullets in `content.md` and show them to the owner for approval before they go into the import.
+   - Effect: new T-096 (drafting and approval), T-030, T-031, T-039. Was blocking T-039; the approved titles must be in Sanity before T-039 is checked.
+4. **The two `[CHECK]` items.** May the EY work name the Microsoft engagement and KubeMentor? **Answered.**
+   - Answer: leave both out for now. The importer keeps holding them back, and EY shows one generic highlight ("Automate cloud delivery with Azure, GitHub Actions and Terraform") until the owner has confirmed with their manager.
+   - Effect: T-030, T-031, T-039, T-090, T-094, T-096 (EY's commit title must not use the held-back items). Was blocking T-031; now clear.
+5. **Section headings.** `content.md` gives headings only for Hero and Contact. May the others be seeded from the spec's section names? **Answered.**
+   - Answer: yes, seed them from the spec's section names (Technical skills, About, Experience, Projects, Writing, Certifications & training, Where I'm heading). The owner can edit them in Studio. Hero and Contact keep the headings in `content.md`.
+   - Effect: T-030, T-031, T-033. Was blocking T-031; now clear.
+6. **The 15 `[FILL]` values:** Hashnode URL and host; Marslab stack; Linux Foundation language; repo links for four projects and a demo link for Discord Clone; three project covers; the AZ-900 date; two credential links. **Answered; the values are still to come.**
+   - Answer: the owner will gather them over the coming days. T-090 and T-095 keep blocking launch on them.
+   - Count: 15 are listed above. Answer 12 fills one (the "This portfolio" repo link), leaving 14. The Hashnode "publication host" repeats the publication URL now that no API is called, so T-001 proposes merging the two, which would leave 13.
+   - Effect: T-090, T-095. Still needed before T-095.
+7. **Domain and sender.** Is there a domain, and which? If not, does the site launch on the `vercel.app` address? Which email is the Resend account under? **Answered.**
+   - Answer: no domain yet. The site launches first on its `*.vercel.app` address, and the owner buys the domain through Vercel at T-092. The Resend account is under subhranilrahaofficial@gmail.com.
+   - Effect: T-018, T-080, T-092. Was blocking T-080 and T-092; T-080 goes ahead without a domain, and its plan confirms what Resend allows until T-092.
+8. **Test phone.** Which phone or phones will be used for testing? That defines "mid-range" for the 30 fps fallback and the LCP target. **Answered.**
+   - Answer: an iPhone (iOS Safari) only; there is no Android device. iPhone pinning, address-bar resize and the 30 fps fallback are the main phone checks, and the "mid-range phone" LCP and frame-rate targets are measured on the iPhone. Android is covered by browser emulation only; in T-089 and the audits its rows read "emulation only, not tested on real hardware", never "pass".
+   - Effect: "How every task runs", T-010, T-013, T-041, T-049, T-050, T-060, T-065, T-067, T-070, T-072, T-087, T-089, T-095. First needed at T-010, where the iPhone model and iOS version are recorded.
+9. **Additions beyond the spec:** T-019 (tests and CI), the `/resume` redirect (T-034), `pnpm env:check` (T-016) and `pnpm content:check` (T-090). Keep or strike? **Answered.**
+   - Answer: keep all four.
+   - Effect: T-016, T-019, T-034, T-090. Decision 0007 stays Proposed until T-019 confirms it.
+10. **Loader.** On every full page load, or once per browser session? **Answered.**
+    - Answer: on every full page load. Keep the 3-second cap and the CSS failsafe. The frequency is one named setting in code, not a CMS field, so switching to once per session later is a one-line change. T-065 measures LCP on repeat loads as well as first loads. If the loader on every load makes the spec's LCP target (under 2.5 s) or Lighthouse mobile Performance (85) fail, the choice is not changed silently: the numbers are reported, a risk is recorded in `docs/architecture.md`, and the owner is asked whether to switch to once per session.
+    - Effect: T-001 (spec wording), T-065. Was blocking T-065; now clear.
+11. **Copyright line.** Fixed text from Sanity ("© 2026 Subhranil Raha"), or the current year computed with the name? **Answered.**
+    - Answer: computed: the current year plus the owner's name, not stored in the CMS.
+    - Effect: T-001 (`content.md` note), T-023, T-030, T-048. Was blocking T-048; now clear.
+12. **Is the GitHub repo public?** It decides the "This portfolio" link. **Answered.**
+    - Answer: yes, public from the start, so the "This portfolio" link can be filled in. The `origin` remote is `https://github.com/SubhranilRaha/SubhranilRahaPortfolio`; T-001 shows the exact edit to `content.md` for approval.
+    - Effect: T-001, T-031. Was blocking T-031; now clear.
+
+### Open
+
+13. **Footer post count.** *(new, from answer 2)* The footer shows a post count, and posts can now come from Hashnode or LinkedIn. Should the count include all posts (label "posts"), or only Hashnode posts (the spec's "Hashnode post count")? Recommendation: all posts, so the number matches the cards in Writing. Blocks T-078, and settles one line of the footer-stats wording in T-001.
 
 ## In progress
 
@@ -54,10 +86,13 @@ None of these has been guessed. Each names the first task it blocks.
 
 ### Before Phase A
 
-- **T-001 Bring the spec and rules in line with decisions 0001 to 0003.** Amend the spec, CLAUDE.md and the notes in `content.md`. The exact wording is shown for approval before the commit.
-  - Files: `docs/specs/0001-portfolio.md`, `CLAUDE.md`, `content.md` (notes only, no content)
-  - Needs: nothing
-  - Done when: `grep -rn "GraphQL" CLAUDE.md docs/specs content.md` finds nothing; the image rule in CLAUDE.md names the scene-art exception; the spec describes the project detail view as an overlay; the phone notes in `content.md` match the spec; CLAUDE.md's opening lines point to `docs/architecture.md`.
+- **T-001 Bring the spec, rules and content notes in line with decisions 0001 to 0003 and the recorded answers.** Amend the spec, CLAUDE.md, `content.md` and `docs/architecture.md`, and write decision 0021. The exact wording is shown for approval before the commit.
+  - Files: `docs/specs/0001-portfolio.md`, `CLAUDE.md`, `content.md` (notes, plus the one link from answer 12), `docs/architecture.md`, `docs/decisions/0021-writing-posts-have-a-source.md`, `docs/decisions/0001-writing-source.md` (status line only)
+  - Needs: nothing. Question 13 settles one line (the footer post count).
+  - Done when:
+    - Decisions 0001 to 0003: `grep -rn "GraphQL" CLAUDE.md docs/specs content.md` finds nothing; the image rule in CLAUDE.md names the scene-art exception; the spec describes the project detail view as an overlay; the phone notes in `content.md` match the spec; CLAUDE.md's opening lines point to `docs/architecture.md`.
+    - Answers: the spec's footer stats read "visits" (a running total, each visitor at most once a day, bots skipped) plus the post count; the spec says posts carry a source (Hashnode or LinkedIn) and the final Writing card covers both; the spec says the loader shows on every full page load; `content.md` marks the copyright line as computed (not imported), has the "This portfolio" repo link filled in from the `origin` remote, marks the two EY `[CHECK]` highlights as held back by decision, and proposes merging the Hashnode "publication host" line into the publication URL.
+    - Architecture and records: `docs/architecture.md` reflects the answers (post source, "visits" label, computed copyright, the loader setting, iPhone-only phone checks, launch on `vercel.app` before the domain, 96 tasks); decision 0021 records the post source field and the two-source final card and supersedes 0001; 0001's status line reads "Superseded by 0021".
 
 ### Phase A: design study
 
@@ -95,7 +130,7 @@ None of these has been guessed. Each names the first task it blocks.
   - Done when: as T-008, and C also differs from B on all five points.
 - **T-010 Choose the direction.**
   - Files: `docs/decisions/0004-visual-direction.md`, `docs/design/style-bible.md` (reduced to the chosen direction, final tokens)
-  - Needs: T-008, T-009. You: view all three on desktop and on a phone, then pick one or a mix.
+  - Needs: T-008, T-009. You: view all three on desktop and on the iPhone (note its model and iOS version, which later fps and LCP numbers refer to), then pick one or a mix.
   - Confirms: decision 0004 (completes it with the chosen direction)
   - Done when: decision 0004 is Accepted and names the variant; the style bible holds one final table of colour, type, spacing and motion tokens.
 - **T-011 Asset brief.** The list of images for the owner to generate.
@@ -108,8 +143,8 @@ None of these has been guessed. Each names the first task it blocks.
   - Done when: the camera visits four stations in chapter order and holds where Experience and Projects will pin; reverse scroll restores each state.
 - **T-013 Master study, part 2.** Stations 5 and 6 (cluster, GPU racks), the end of the path, and the performance budget.
   - Files: `studies/master.html`, `docs/design/style-bible.md` (camera keyframe table, budget)
-  - Needs: T-012. You: phone check.
-  - Done when: the full path runs from hero to footer; draw calls, triangles and frame time are recorded for desktop and for the mobile setting (pixel ratio 1.5, 40 % particles); 60 fps on the Mac and at least 30 fps on the phone; cutout slots use the ids from the asset brief.
+  - Needs: T-012. You: iPhone check.
+  - Done when: the full path runs from hero to footer; draw calls, triangles and frame time are recorded for desktop and for the mobile setting (pixel ratio 1.5, 40 % particles); 60 fps on the Mac and at least 30 fps on the iPhone; cutout slots use the ids from the asset brief.
 
 ### Phase B: scaffold
 
@@ -122,7 +157,7 @@ None of these has been guessed. Each names the first task it blocks.
   - Files: `eslint.config.mjs`, `.prettierrc.json`, `.prettierignore`, `package.json`
   - Needs: T-014
   - Done when: `pnpm lint`, `pnpm typecheck` and `pnpm format:check` exit 0; adding `const x: any = 1` makes `pnpm lint` fail (then removed).
-- **T-016 Typed env module.** One module that validates variables and fails fast. Variables are added to it task by task as integrations arrive, and its names are reconciled with the existing `.env.example`.
+- **T-016 Typed env module.** One module that validates variables and fails fast. Variables are added to it task by task as integrations arrive, and its names are reconciled with the existing `.env.example`. The `pnpm env:check` script is an approved addition (answer 9).
   - Files: `src/env.ts`, `scripts/check-env.ts`, `.env.example`, `.claude/settings.json`, `package.json`
   - Needs: T-014. You: apply or confirm the deny-rule change (replace `Read(./.env.*)` with `Read(./.env.local)`, `Read(./.env.*.local)`, `Read(./.env.development)`, `Read(./.env.production)`, `Read(./.env.test)`; keep `Read(./.env)`).
   - Done when: `pnpm build` without `NEXT_PUBLIC_SITE_URL` fails and names the variable, and passes with it; `pnpm env:check` confirms every variable in `src/env.ts` is documented in `.env.example`; `.env.example` can be read while a read of `.env.local` is still refused.
@@ -133,9 +168,9 @@ None of these has been guessed. Each names the first task it blocks.
   - Done when: a temporary swatch page matches the style bible's colours and type scale; fonts are served from the site's own origin; Lighthouse reports layout shift 0 on that page; Tab shows a visible focus ring.
 - **T-018 First deploy.**
   - Files: none expected
-  - Needs: T-016. You: import the GitHub repo in Vercel, add the env variable, approve `git push`.
+  - Needs: T-016. You: import the GitHub repo in Vercel, add the env variable (`NEXT_PUBLIC_SITE_URL` is the production `*.vercel.app` address until T-092 changes it), approve `git push`.
   - Done when: the `*.vercel.app` URL shows the blank page; the build log shows pnpm and the pinned Node version; a later push deploys by itself.
-- **T-019 Tests and CI (proposed addition, not in the spec; see open question 9).** Vitest for pure logic and one GitHub Actions workflow.
+- **T-019 Tests and CI (approved addition, answer 9).** Vitest for pure logic and one GitHub Actions workflow.
   - Files: `vitest.config.ts`, `src/lib/smoke.test.ts`, `.github/workflows/ci.yml`, `package.json`
   - Needs: T-015
   - Confirms: decision 0007
@@ -160,7 +195,7 @@ None of these has been guessed. Each names the first task it blocks.
   - Files: `src/sanity/schemaTypes/documents/homePage.ts`
   - Needs: T-021
   - Confirms: decision 0009
-  - Done when: Studio shows one tab per chapter (loader, hero, skills, about, experience, projects, writing, certifications, heading, contact, footer, 404) with its label, heading, intro and optional caption; About has rich text and a quick-facts list.
+  - Done when: Studio shows one tab per chapter (loader, hero, skills, about, experience, projects, writing, certifications, heading, contact, footer, 404) with its label, heading, intro and optional caption; About has rich text and a quick-facts list; the Writing tab also holds the wording of the final card (answer 2); there is no copyright field, because the footer computes it (answer 11).
 - **T-024 Skills, experience and roadmap types.**
   - Files: `src/sanity/schemaTypes/documents/skillGroup.ts`, `experience.ts`, `milestone.ts`
   - Needs: T-021
@@ -168,7 +203,7 @@ None of these has been guessed. Each names the first task it blocks.
 - **T-025 Project, certification and post types.**
   - Files: `src/sanity/schemaTypes/documents/project.ts`, `certification.ts`, `post.ts`
   - Needs: T-021
-  - Done when: a project cover needs alt text; a seventh gallery image is refused; a certification with no images saves; a post needs title, link and date.
+  - Done when: a project cover needs alt text; a seventh gallery image is refused; a certification with no images saves; a post needs title, link, date and a source (Hashnode or LinkedIn), while reading time, tags and cover are optional (a LinkedIn write-up may have none of them).
 - **T-026 Studio structure.**
   - Files: `src/sanity/structure.ts`, `sanity.config.ts`
   - Needs: T-022 to T-025
@@ -189,12 +224,12 @@ None of these has been guessed. Each names the first task it blocks.
   - Done when: a test image renders a `srcset` on `cdn.sanity.io` with `auto=format`; a blur placeholder shows on a throttled connection; moving the hotspot in Studio changes the crop; no `/_next/image` request is made; omitting `alt` is a type error.
 - **T-030 `content.md` parser (dry run).**
   - Files: `scripts/import-content/parse.ts`, `types.ts`, `index.ts`, `parse.test.ts`, `package.json`
-  - Needs: T-025
-  - Done when: `pnpm import:content --dry-run` reports 5 skill groups, 5 roles, 4 projects, 4 certifications, 4 milestones, 12 captions and 5 quick facts, and lists every `[FILL]` and `[CHECK]` marker with its line number; it makes no network request.
+  - Needs: T-025, T-096
+  - Done when: `pnpm import:content --dry-run` reports 5 skill groups, 5 roles (each with its approved commit title), 4 projects, 4 certifications, 4 milestones, 12 captions, 5 quick facts and 7 section headings (the section titles in `content.md`, which match the spec's names), and lists every `[FILL]` and `[CHECK]` marker with its line number; it skips the footer copyright line (answer 11); it makes no network request.
 - **T-031 Import writer.**
   - Files: `scripts/import-content/write.ts`, `index.ts`, `.env.example`
-  - Needs: T-030, T-027. You: create a write token and add it to `.env.local` only, never to Vercel.
-  - Done when: the first run creates the documents and a second run reports 0 changes; Studio content matches `content.md`; list items marked `[CHECK]` are held back and named in the report; `[FILL]` fields are empty rather than holding placeholder text.
+  - Needs: T-030, T-027, T-096. You: create a write token and add it to `.env.local` only, never to Vercel.
+  - Done when: the first run creates the documents and a second run reports 0 changes; Studio content matches `content.md`; list items marked `[CHECK]` are held back and named in the report, so EY has exactly one highlight in Studio (answer 4); the 7 section headings, 5 commit titles, final-card wording and the "This portfolio" repo link are present; `[FILL]` fields are empty rather than holding placeholder text.
 - **T-032 Revalidation webhook.**
   - Files: `src/app/api/revalidate/route.ts`, `src/env.ts`, `.env.example`
   - Needs: T-028, T-018. You: create the webhook in Sanity with the shared secret.
@@ -206,10 +241,10 @@ Each section is built here in its list layout, which is also what reduced-motion
 
 - **T-033 Page shell and chapter parts.**
   - Files: `src/app/(site)/page.tsx`, `src/components/chrome/ChapterSection.tsx`, `ChapterLabel.tsx`, `SectionHeading.tsx`, `Caption.tsx`, `src/lib/chapters.ts`
-  - Needs: T-028, T-017
+  - Needs: T-028, T-017, T-031
   - Confirms: decision 0012
-  - Done when: nine chapters appear in spec order with label, heading and caption from Sanity; deleting a caption in Studio removes it from the page; the outline is one h1 followed by h2s; `/#projects` lands on Projects.
-- **T-034 Nav bar and resume link.**
+  - Done when: nine chapters appear in spec order with label, heading and caption from Sanity (headings as seeded from the spec's section names, answer 5); deleting a caption in Studio removes it from the page; the outline is one h1 followed by h2s; `/#projects` lands on Projects.
+- **T-034 Nav bar and resume link.** The `/resume` redirect is an approved addition (answer 9).
   - Files: `src/components/chrome/Nav.tsx`, `NavLink.tsx`, `ResumeButton.tsx`, `SkipLink.tsx`, `src/app/resume/route.ts`, `src/app/(site)/layout.tsx`
   - Needs: T-033, T-032
   - Done when: the sticky nav scrolls to each section and marks the current one; `/resume` downloads the PDF from Sanity, and a newly uploaded PDF is served within 60 s; with no PDF uploaded the button is hidden.
@@ -232,7 +267,7 @@ Each section is built here in its list layout, which is also what reduced-motion
 - **T-039 Experience, list layout.**
   - Files: `src/components/sections/Experience.tsx`, `ExperienceItem.tsx`, `src/lib/experience.ts`
   - Needs: T-033
-  - Done when: roles appear newest first in an ordered list with dates, type, highlights, stack, short hash and commit title; EY is on `main` and the others on branches; the section reads correctly with JavaScript disabled.
+  - Done when: roles appear newest first in an ordered list with dates, type, highlights, stack, short hash and commit title; EY is on `main` and the others on branches; EY renders cleanly with its single highlight and a role with an empty stack renders cleanly (answers 4 and 6); the section reads correctly with JavaScript disabled.
 - **T-040 Projects, grid layout.**
   - Files: `src/components/sections/Projects.tsx`, `ProjectCard.tsx`
   - Needs: T-033, T-029
@@ -240,7 +275,7 @@ Each section is built here in its list layout, which is also what reduced-motion
 - **T-041 Lightbox.**
   - Files: `src/components/ui/Lightbox.tsx`, `src/lib/useSwipe.ts`
   - Needs: T-029
-  - Done when: arrow keys and Esc work; focus stays inside and returns to the trigger; a swipe changes image on a phone; each image carries its alt text.
+  - Done when: arrow keys and Esc work; focus stays inside and returns to the trigger; a swipe changes image on the iPhone; each image carries its alt text.
 - **T-042 Project detail dialog.**
   - Files: `src/components/sections/ProjectDialog.tsx`, `ProjectGallery.tsx`, `ProjectCard.tsx`
   - Needs: T-040, T-041
@@ -248,7 +283,7 @@ Each section is built here in its list layout, which is also what reduced-motion
 - **T-043 Writing, list layout.**
   - Files: `src/components/sections/Writing.tsx`, `PostCard.tsx`
   - Needs: T-033, T-029
-  - Done when: the latest four posts show cover, title, date, reading time and tags and open in a new tab; a final card links to the Hashnode URL from settings; two posts show two cards; no posts shows only the final card.
+  - Done when: up to four posts show title, date and a small source label ("Hashnode" or "LinkedIn") and, when present, cover, reading time and tags, and open in a new tab; the final card shows its wording from Sanity and one link per source whose URL exists in site settings (so only LinkedIn until the Hashnode URL is filled in); one, two and three posts each render cleanly (checked with all three); no posts shows only the final card. Which LinkedIn address the card uses (the profile link from site settings, unless the owner wants a separate one) is settled in this task's plan.
 - **T-044 Certifications panel.**
   - Files: `src/components/sections/Certifications.tsx`, `CheckRow.tsx`, `StatusIcon.tsx`, `src/lib/certifications.ts`
   - Needs: T-033, T-029
@@ -268,7 +303,7 @@ Each section is built here in its list layout, which is also what reduced-motion
 - **T-048 Footer.**
   - Files: `src/components/chrome/Footer.tsx`, `FooterStats.tsx`
   - Needs: T-033
-  - Done when: line, links, copyright and caption come from Sanity; three stat slots show a dash at their final width, so nothing shifts when numbers arrive.
+  - Done when: line, links and caption come from Sanity; a link whose URL is empty (the Hashnode link, until the owner fills it in) is not rendered; the copyright reads "© <current year> <name from site settings>", computed when the page renders and not stored in Sanity (answer 11), so it rolls over at the first re-render after New Year; three stat slots, the first labelled "visits" (answer 1), show a dash at their final width, so nothing shifts when numbers arrive.
 
 ### Phase E: 3D and motion
 
@@ -276,12 +311,12 @@ Each section is built here in its list layout, which is also what reduced-motion
   - Files: `src/components/motion/SmoothScroll.tsx`, `src/lib/motion.ts`, `src/lib/scrollStore.ts`, `src/app/(site)/layout.tsx`
   - Needs: T-048
   - Confirms: decision 0013
-  - Done when: wheel scrolling is smoothed on desktop; under reduced motion no smooth-scroll instance exists; nav links and the dialog scroll lock still work; on a phone the address bar collapsing causes no jump.
+  - Done when: wheel scrolling is smoothed on desktop; under reduced motion no smooth-scroll instance exists; nav links and the dialog scroll lock still work; on the iPhone the address bar collapsing causes no jump.
 - **T-050 Scene shell.** The lazy-loaded canvas behind the HTML and its static fallback.
   - Files: `src/components/scene/SceneRoot.tsx`, `SceneCanvas.tsx`, `StaticScene.tsx`, `SceneErrorBoundary.tsx`, `src/app/(site)/layout.tsx`
   - Needs: T-049, T-013
   - Confirms: decision 0014
-  - Done when: a placeholder mesh renders behind the HTML; the three.js chunk is requested only after first paint; under reduced motion the static image shows and no WebGL context is created; hiding the tab stops rendering; Lighthouse mobile Performance is still at least 85 (baseline recorded).
+  - Done when: a placeholder mesh renders behind the HTML; the three.js chunk is requested only after first paint; under reduced motion the static image shows and no WebGL context is created; hiding the tab stops rendering; Lighthouse mobile Performance is still at least 85 (baseline recorded, and also read on the iPhone; this task's plan says how LCP and frame rate are read on iOS Safari and what stands in if Safari cannot report LCP).
 - **T-051 Scene base.** Colours, lights, fog and shared materials ported from the master study.
   - Files: `src/components/scene/tokens.ts`, `materials.ts`, `Environment.tsx`
   - Needs: T-050
@@ -323,7 +358,7 @@ Each section is built here in its list layout, which is also what reduced-motion
   - Files: `src/components/scene/quality.ts`, `QualityProvider.tsx`
   - Needs: T-058, T-059
   - Confirms: decision 0016
-  - Done when: under 6x CPU throttling the quality steps down (logged) and finally swaps to the static image with no flash or scroll jump; touch devices start at pixel ratio 1.5 or less, 40 % particles and no shadows; the phone holds 30 fps or falls back.
+  - Done when: under 6x CPU throttling the quality steps down (logged) and finally swaps to the static image with no flash or scroll jump; touch devices start at pixel ratio 1.5 or less, 40 % particles and no shadows; the iPhone holds 30 fps or falls back (thresholds are tuned on the iPhone; Android is emulation only).
 - **T-061 Finishing pass (only if decision 0004 calls for post-processing).**
   - Files: `src/components/scene/Effects.tsx`
   - Needs: T-060
@@ -340,18 +375,18 @@ Each section is built here in its list layout, which is also what reduced-motion
   - Files: `src/components/scene/StaticScene.tsx`, `public/scene/`
   - Needs: T-062, T-050
   - Done when: reduced-motion and fallback visitors see the final still with a blur placeholder and correct crops at 375 and 1440 px; its file size is inside the brief's budget.
-- **T-065 Loader.**
-  - Files: `src/components/chrome/Loader.tsx`, `src/lib/loadProgress.ts`
+- **T-065 Loader.** Shows on every full page load (answer 10). The frequency is one named setting in code, not a CMS field.
+  - Files: `src/components/chrome/Loader.tsx`, `src/lib/loadProgress.ts`, `src/lib/loaderConfig.ts`, `docs/architecture.md` (only if the LCP check below fails)
   - Needs: T-050, T-017
-  - Confirms: decision 0017
-  - Done when: the counter follows real loading (intermediate values on a throttled connection); content shows by 3 s at the latest, even with JavaScript blocked; skipped under reduced motion; Lighthouse mobile LCP stays under 2.5 s with the loader on.
+  - Confirms: decision 0017 (updated for answer 10)
+  - Done when: the counter follows real loading (intermediate values on a throttled connection); content shows by 3 s at the latest, even with JavaScript blocked (the CSS failsafe, tested with scripts off); skipped under reduced motion; `LOADER_FREQUENCY` in `loaderConfig.ts` is the only place the frequency is set (`"every-load"` now; switching to `"once-per-session"` is a one-line change, shown by trying it); LCP is under 2.5 s and Lighthouse mobile Performance is at least 85 on a first load and on a repeat load with a warm cache (for example Lighthouse with storage reset disabled), with the loader on, and LCP is also read on the iPhone. If any of these fail, the setting is left unchanged: the numbers are reported, the risk is added to `docs/architecture.md`, the owner is asked whether to switch to once per session, and the task stays In progress until they answer.
 - **T-066 Custom cursor.**
   - Files: `src/components/scene/CursorTrail.tsx`
   - Needs: T-050
   - Done when: the trail keeps even spacing at any hand speed; a resting pointer shows a faint breath, not a column; absent on touch devices; a designed still under reduced motion; links and form fields remain easy to target.
 - **T-067 Touch ripple.**
   - Files: `src/components/scene/TouchRipple.tsx`
-  - Needs: T-050. You: phone check.
+  - Needs: T-050. You: iPhone check.
   - Done when: a tap makes one ripple at the touch point; scrolling makes none; none with a mouse or under reduced motion.
 - **T-068 Reveal motion for the unpatterned sections.**
   - Files: `src/components/motion/Reveal.tsx`, `SplitHeading.tsx`, the sections that use them
@@ -363,20 +398,20 @@ Each section is built here in its list layout, which is also what reduced-motion
   - Done when: an SVG draws `main` plus one merging branch per side role from Sanity data; adding a role in Studio adds a commit; the graph is hidden from screen readers, which get the list.
 - **T-070 Commit graph scroll.**
   - Files: `src/components/sections/experience/CommitGraphScroll.tsx`, `Experience.tsx`
-  - Needs: T-069, T-049. You: phone check.
-  - Done when: the section pins; the marker moves commit to commit and the role panel changes in step, forward and backward; Tab reaches every role; the pin releases cleanly into Projects; the same works at 375 px; reduced motion shows the list.
+  - Needs: T-069, T-049. You: iPhone check.
+  - Done when: the section pins; the marker moves commit to commit and the role panel changes in step, forward and backward; Tab reaches every role; the pin releases cleanly into Projects; the same works at 375 px and on the iPhone, including the address bar collapsing and expanding; reduced motion shows the list.
 - **T-071 Deployment track.**
   - Files: `src/components/sections/projects/DeploymentTrack.tsx`, `Projects.tsx`
   - Needs: T-042, T-049
   - Done when: the section pins and vertical scrolling moves the cards sideways; tabbing to a card brings it into view; cards still open the dialog; reduced motion shows the grid.
-- **T-072 Pipeline progress bar and phone tuning.**
+- **T-072 Pipeline progress bar and iPhone tuning.**
   - Files: `src/components/sections/projects/PipelineProgress.tsx`, `DeploymentTrack.tsx`
-  - Needs: T-071. You: phone check.
-  - Done when: the bar and its stage markers agree with the active card at every boundary in both directions; on a phone the track follows vertical swipes smoothly and never traps the scroll.
+  - Needs: T-071. You: iPhone check.
+  - Done when: the bar and its stage markers agree with the active card at every boundary in both directions; on the iPhone the track follows vertical swipes smoothly, survives the address bar collapsing and never traps the scroll.
 - **T-073 Stacked cards for Writing.**
   - Files: `src/components/sections/writing/CardStack.tsx`, `Writing.tsx`
   - Needs: T-043, T-049
-  - Done when: each card pins while the next slides over it; the covered card scales down and dims; the final card ends the stack without overlapping Certifications; reduced motion shows the list.
+  - Done when: each card pins while the next slides over it; the covered card scales down and dims; the final card ends the stack without overlapping Certifications; the stack works with 2, 3 and 4 cards (1 to 3 posts plus the final card), and with only the final card it is a plain card with no pin; reduced motion shows the list.
 - **T-074 Checks-panel run sequence.**
   - Files: `src/components/sections/certifications/ChecksRun.tsx`, `Certifications.tsx`
   - Needs: T-045, T-049
@@ -392,7 +427,7 @@ Each section is built here in its list layout, which is also what reduced-motion
   - Files: `src/lib/visits.ts`, `src/lib/redis.ts`, `src/lib/visits.test.ts`, `src/env.ts`, `.env.example`
   - Needs: T-016. You: create the free Upstash database and add its URL and token.
   - Confirms: decision 0018
-  - Done when: tests show the same visitor on the same day maps to one key, a new day to a new key, and known bot user agents are rejected; a test asserts no raw IP address is ever written.
+  - Done when: tests show the same visitor on the same day maps to one key, a new day to a new key, and known bot user agents are rejected; a test asserts no raw IP address is ever written; the stored total counts each visitor at most once a day (answer 1).
 - **T-077 Visit endpoint and beacon.**
   - Files: `src/app/api/visit/route.ts`, `src/components/chrome/VisitBeacon.tsx`
   - Needs: T-076, T-048
@@ -400,16 +435,16 @@ Each section is built here in its list layout, which is also what reduced-motion
 - **T-078 Footer stats.**
   - Files: `src/lib/github.ts`, `src/components/chrome/FooterStats.tsx`, `src/sanity/queries.ts`
   - Needs: T-077
-  - Done when: the footer shows visits, public GitHub repositories and posts; the repository number equals the one on the GitHub profile; with GitHub unreachable it shows the last known number or a dash, never an error.
+  - Done when: the footer shows visits, public GitHub repositories and posts (what the post count includes is question 13); the repository number equals the one on the GitHub profile; with GitHub unreachable it shows the last known number or a dash, never an error.
 - **T-079 Vercel Web Analytics.**
   - Files: `src/app/(site)/layout.tsx`, `package.json`
   - Needs: T-018. You: switch on Web Analytics in Vercel.
   - Done when: a visit appears in the Vercel dashboard; `/studio` sends no events.
 - **T-080 Contact endpoint.** Validation, honeypot, rate limit, send through Resend.
   - Files: `src/app/api/contact/route.ts`, `src/lib/contact.ts`, `src/lib/rateLimit.ts`, `src/lib/contact.test.ts`, `src/env.ts`, `.env.example`
-  - Needs: T-076, T-047. You: a Resend API key and the answer to open question 7.
+  - Needs: T-076, T-047. You: a Resend API key (the account is under subhranilrahaofficial@gmail.com). There is no domain until T-092 (answer 7); this task's plan confirms what Resend allows from its shared test sender until then.
   - Confirms: decision 0019
-  - Done when, by `curl`: a valid message returns 200 and reaches the inbox within a minute with reply-to set to the sender; a bad email returns 400 with field errors; a filled honeypot returns 200 and sends nothing; the fourth request inside the window returns 429.
+  - Done when, by `curl`: a valid message returns 200 and reaches the inbox within a minute with reply-to set to the sender; a bad email returns 400 with field errors; a filled honeypot returns 200 and sends nothing; the fourth request inside the window returns 429; the from address is a single environment value, so T-092 switches it to the domain without a code change.
 - **T-081 Connect the form.**
   - Files: `src/components/sections/ContactForm.tsx`
   - Needs: T-080
@@ -441,19 +476,19 @@ Each section is built here in its list layout, which is also what reduced-motion
 - **T-087 Performance audit.**
   - Files: fixes, `docs/audits/performance.md`
   - Needs: T-075
-  - Done when: three Lighthouse mobile runs on the production URL each give Performance at least 85, Best Practices at least 95 and SEO 100; LCP is under 2.5 s on the phone; the initial JavaScript contains no three.js; the console is clean.
+  - Done when: three Lighthouse mobile runs on the production URL each give Performance at least 85, Best Practices at least 95 and SEO 100; LCP is under 2.5 s on the iPhone (model and iOS version recorded) and in Lighthouse's mobile run (an emulation, marked as such); the initial JavaScript contains no three.js; the console is clean.
 - **T-088 Hygiene checks.**
   - Files: `next.config.ts` (security headers), `docs/audits/hygiene.md`
   - Needs: T-081
   - Done when: `pnpm env:check` passes; a scan of the repo and its history finds no secret; the rendered HTML contains no phone number; `pnpm audit` shows no high or critical issue, or each is listed with a reason.
 - **T-089 Device and browser matrix.**
   - Files: `docs/audits/qa-matrix.md`
-  - Needs: T-075. You: the phone rows.
-  - Done when: the table is filled for Chrome, Safari and Firefox on desktop and for iOS Safari and Android Chrome, at 375, 768, 1024 and 1440 px, per section and pattern; rotation and address-bar resize pass; each failure is filed as a new task.
-- **T-090 Content completeness gate.**
+  - Needs: T-075. You: the iPhone rows.
+  - Done when: the table is filled for Chrome, Safari and Firefox on desktop, for iOS Safari on the iPhone and for Android Chrome, at 375, 768, 1024 and 1440 px, per section and pattern; the iPhone rows cover rotation and address-bar resize, and widths the iPhone cannot show are marked as a resized desktop browser; every Android row reads "emulation only, not tested on real hardware", never "pass"; each failure is filed as a new task.
+- **T-090 Content completeness gate (approved addition, answer 9).** Blocks launch until the `[FILL]` values are in (answer 6).
   - Files: `scripts/check-content.ts`, `package.json`
   - Needs: T-031
-  - Done when: `pnpm content:check` lists every empty required field, leftover `[FILL]` or `[CHECK]` text and unpublished draft, and exits 0 only when none remain.
+  - Done when: `pnpm content:check` lists every empty launch-required field, every unpublished draft and any leftover `[FILL]` text, and exits 0 only when none remain; the script's list of launch-required fields covers every `[FILL]` value in `content.md` (the values listed in answer 6); the two held-back EY highlights are listed as "held back by decision (answer 4)" and do not fail the check.
 - **T-091 Originality audit against Kage.**
   - Files: `docs/audits/originality-kage.md`
   - Needs: T-002, T-075
@@ -461,10 +496,10 @@ Each section is built here in its list layout, which is also what reduced-motion
 
 ### Phase H: launch
 
-- **T-092 Production domain.**
+- **T-092 Production domain.** Until now the site runs on its `*.vercel.app` address (answer 7). The owner buys the domain through Vercel here.
   - Files: `.env.example` (notes)
-  - Needs: T-086 to T-091. You: DNS, the domain in Vercel, the new origin and webhook URL in Sanity, the sending domain in Resend.
-  - Done when: the domain serves the site over HTTPS and the other host form redirects; a Studio edit still shows within 60 s; a contact message arrives from the domain's sender; sitemap, canonical and share URLs use the domain.
+  - Needs: T-086 to T-091 (the audits ran on the `*.vercel.app` address). You: buy the domain through Vercel (a paid purchase), set `NEXT_PUBLIC_SITE_URL` to it, add the new origin and webhook URL in Sanity, verify the sending domain in Resend.
+  - Done when: the domain serves the site over HTTPS and the other host form redirects; a Studio edit still shows within 60 s; a contact message arrives from the domain's sender; sitemap, canonical and share URLs use the domain; the sitemap, robots and Person JSON-LD checks from T-084 and one Lighthouse mobile run are repeated on the domain; what happens to the `*.vercel.app` address (redirect or canonical only) is decided in this task's plan.
 - **T-093 Search Console.**
   - Files: `src/app/(site)/layout.tsx`, `src/env.ts` (only if the meta-tag method is used)
   - Needs: T-092. You: verify the property and submit the sitemap.
@@ -472,10 +507,17 @@ Each section is built here in its list layout, which is also what reduced-motion
 - **T-094 Editing runbook.**
   - Files: `docs/runbooks/editing-content.md`
   - Needs: T-092
-  - Done when: using only the runbook the owner changes a caption, replaces the resume, adds a project with images, adds a certification and adds a post, and each is live within 60 s; it also covers image sizes and alt text, replacing scene art, rotating secrets, and what to do when an edit does not show.
+  - Done when: using only the runbook the owner changes a caption, replaces the resume, adds a project with images, adds a certification and adds a post (choosing Hashnode or LinkedIn as its source), and each is live within 60 s; it also covers image sizes and alt text, replacing scene art, rotating secrets, adding the two held-back EY highlights once the manager confirms (answer 4), and what to do when an edit does not show.
 - **T-095 Launch checklist.**
   - Files: `docs/audits/launch-checklist.md`, `docs/progress.md`
-  - Needs: T-093, T-094
-  - Done when: every acceptance criterion in the spec has a dated pass with evidence; `pnpm content:check` exits 0; tag `v1.0.0` exists.
+  - Needs: T-090, T-093, T-094
+  - Done when: every acceptance criterion in the spec has a dated pass with evidence, with phone evidence taken from the iPhone and Android stated as emulation only (answer 8); `pnpm content:check` exits 0, so every `[FILL]` value is filled in and published (answer 6); tag `v1.0.0` exists.
+
+### Added after planning
+
+- **T-096 Draft commit titles and the Writing final-card wording for approval.** The five commit-style titles and the wording of the Writing final card (covering Hashnode and LinkedIn) are not in `content.md`. They are drafted, shown to the owner, and only then added to `content.md` and imported (answers 2 and 3).
+  - Files: `content.md` (a "Commit title" line under each role, and the final-card wording under Writing; added only after approval)
+  - Needs: T-001
+  - Done when: drafts of all five commit titles and the final-card wording are shown to the owner; each is approved or edited by them; the approved text is in `content.md`; each title is a plain commit-style summary of that role's listed highlights and adds no claim they do not make; EY's title is based only on its one remaining highlight and does not mention the Microsoft engagement or KubeMentor (answer 4); none of the texts contains humour (CLAUDE.md keeps humour to one caption per section); the final-card wording covers both Hashnode and LinkedIn.
 
 ## Done
