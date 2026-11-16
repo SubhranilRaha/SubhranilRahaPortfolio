@@ -42,8 +42,11 @@ Read `docs/specs/0001-portfolio.md` for WHAT we build, `docs/tasks/TASKS.md` for
   No purple gradients, neon grids, glassmorphism cards or emoji in UI.
 - Type: one display font for headings, one monospace font for labels, captions and commands. Self-hosted via `next/font`.
 - Humor: at most one small monospace caption per section, from the CMS. Never in headings, facts or About text.
-- Experience section = commit-graph scroll. Projects section = horizontal deployment-track scroll.
-  No other section may reuse these two patterns.
+- Experience = commit-graph scroll. Projects = horizontal deployment track.
+  Writing = stacked-card scroll. Certifications = CI-checks panel.
+  No other section may reuse these four patterns.
+- All images come from Sanity via the image URL builder: responsive sizes, WebP/AVIF, blur placeholder,
+  required alt text, lazy-loaded below the fold. Reduced motion and mobile get lists, not pinned scrolls.
 - Accessibility: every animation respects `prefers-reduced-motion`; all text is real HTML (not in the canvas);
   keyboard navigable; visible focus states; WCAG AA contrast.
 - Mobile and reduced motion: a static hero image replaces the 3D scene; content stays identical.

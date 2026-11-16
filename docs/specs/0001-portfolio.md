@@ -29,11 +29,25 @@ rises "up the stack": terminal → toolchain → pipeline → cloud network → 
 ## In scope
 - All sections above, content from `content.md` imported into Sanity
 - CMS-editable: site settings (name, title, about, socials, SEO), resume PDF, skill groups,
-  experience, projects (cover image required + gallery up to 6), certifications, roadmap milestones,
-  section captions
+  experience, projects, certifications, roadmap milestones, section captions
+- Images, all uploaded in Sanity Studio (PNG, JPG or WebP), each with required alt text and a crop hotspot:
+  - Project: cover image (required) + gallery of up to 6 screenshots (optional)
+  - Certification: badge image (optional, transparent PNG) + certificate image (optional, the full certificate)
 - Experience: pinned commit-graph scroll (EY on `main`, other roles as merging branches)
-- Projects: pinned horizontal deployment-track scroll with a pipeline progress bar
-- Writing: latest Hashnode posts, revalidated automatically; cards link to Hashnode
+- Projects: pinned horizontal deployment-track scroll with a pipeline progress bar; each card shows
+  the cover image; clicking a card opens a detail view with summary, tech, links and the gallery
+  (keyboard and swipe navigable lightbox)
+- Writing: sticky stacked-card scroll (each post card pins, the next slides over it, the previous
+  scales down and dims); latest 4 posts + a final "Read everything on Hashnode" card; cover image,
+  title, date, reading time and tags from Hashnode; revalidated hourly; cards open the post on Hashnode
+- Certifications: CI-checks panel; one row per certification or training with badge thumbnail,
+  status icon (earned = tick, in progress = slow amber spinner), name, issuer and date; a summary line
+  ("N checks · X passed · Y running") computed from the data; a row expands to show the certificate
+  image (click to open full size in a lightbox) and a "Verify credential" link; rows without images
+  still render cleanly; scales to any number of entries
+- Mobile (below 768 px): no WebGL; static scene image with light parallax; hamburger menu with the
+  Resume button always visible; Experience as a vertical timeline; Projects as a swipe carousel;
+  Writing as a simple list; cursor and particles off; tap targets at least 44 px
 - Footer stats: unique daily visitors (counted once per visitor per day, bots skipped),
   public GitHub repo count, Hashnode post count
 - Contact form: name, email, message; server-side validation, honeypot and rate limit; sent via Resend

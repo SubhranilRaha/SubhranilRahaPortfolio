@@ -18,8 +18,8 @@
 ### Social links
 
 - **GitHub:** https://github.com/SubhranilRaha
-- **LinkedIn:** https://www.linkedin.com/in/subhranil-raha-8139981b3/
-- **Hashnode:** https://hashnode.com/@SubhranilRaha
+- **LinkedIn:** https://linkedin.com/in/SubhranilRaha
+- **Hashnode:** [FILL: your Hashnode publication URL]
 
 ### SEO
 
@@ -190,13 +190,25 @@ Today I'm going deep on cloud and DevOps. I hold the GitHub Copilot (GH-300) and
 
 ## Writing (source: Hashnode GraphQL API, not the CMS)
 
-- **Publication host:** https://hashnode.com/@SubhranilRaha
+> **Display: stacked docs.** Each post card pins and the next slides over it; the previous
+> card scales down and dims. Latest 4 posts, then a "Read everything on Hashnode" card.
+> Cover images come from Hashnode automatically.
+
+- **Publication host:** [FILL: yourname.hashnode.dev]
 - **Section intro:** I write about what I build and learn, from Claude Code workflows to cloud and DevOps.
 - Shows the latest posts automatically; each card links to the post on Hashnode.
 
 ---
 
 ## Certifications & training (CMS: certification, one document each)
+
+> **Display: CI-checks panel.** One row per entry with badge thumbnail and status icon;
+> a row expands to the full certificate image (lightbox) and a "Verify credential" link.
+>
+> **Images (uploaded in Sanity Studio, both optional):**
+> - Badge: transparent PNG, square, about 400 x 400 px (e.g. the Credly or Microsoft badge)
+> - Certificate: PNG or JPG of the full certificate, about 1600 px wide
+> Remove personal details you don't want public (certificate ID numbers are fine; no phone or address).
 
 | Name | Issuer | Date | Status | Credential link |
 |---|---|---|---|---|
