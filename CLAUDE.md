@@ -46,10 +46,11 @@ Read `docs/specs/0001-portfolio.md` for WHAT we build, `docs/tasks/TASKS.md` for
   Writing = stacked-card scroll. Certifications = CI-checks panel.
   No other section may reuse these four patterns.
 - All images come from Sanity via the image URL builder: responsive sizes, WebP/AVIF, blur placeholder,
-  required alt text, lazy-loaded below the fold. Reduced motion and mobile get lists, not pinned scrolls.
+  required alt text, lazy-loaded below the fold. Reduced-motion users get lists, not pinned scrolls.
 - Accessibility: every animation respects `prefers-reduced-motion`; all text is real HTML (not in the canvas);
   keyboard navigable; visible focus states; WCAG AA contrast.
-- Mobile and reduced motion: a static hero image replaces the 3D scene; content stays identical.
+- Mobile gets the same 3D experience at adaptive quality; only reduced-motion users and devices
+  that fail the performance monitor get the static scene image. Test every 3D task on a real phone.
 
 ## Skills
 Project skills live in `.claude/skills/`. Use `threejs`, `scroll-world-storytelling` and

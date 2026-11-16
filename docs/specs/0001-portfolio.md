@@ -45,9 +45,13 @@ rises "up the stack": terminal → toolchain → pipeline → cloud network → 
   ("N checks · X passed · Y running") computed from the data; a row expands to show the certificate
   image (click to open full size in a lightbox) and a "Verify credential" link; rows without images
   still render cleanly; scales to any number of entries
-- Mobile (below 768 px): no WebGL; static scene image with light parallax; hamburger menu with the
-  Resume button always visible; Experience as a vertical timeline; Projects as a swipe carousel;
-  Writing as a simple list; cursor and particles off; tap targets at least 44 px
+- Mobile: same experience as desktop, including the WebGL scene and all four scroll patterns,
+  at adaptive quality (DPR capped at 1.5, ~40% particles, lighter post-processing, no real-time
+  shadows); a performance monitor steps quality down and falls back to the static scene image
+  only if the device cannot hold 30 fps; render loop pauses when hidden or off screen; handles
+  mobile address-bar resize without scroll jumps; touch ripple instead of the cursor; hamburger
+  menu with the Resume button always visible; tap targets at least 44 px
+- Reduced motion (any device): static scene image and plain list layouts, same content
 - Footer stats: unique daily visitors (counted once per visitor per day, bots skipped),
   public GitHub repo count, Hashnode post count
 - Contact form: name, email, message; server-side validation, honeypot and rate limit; sent via Resend
